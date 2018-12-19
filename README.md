@@ -1,15 +1,11 @@
 # inls620-billboard_analysis
 
-### Choosing a dataset
+### 0. Choosing a dataset
 
   #### Outline:
 ###### I. Understanding the data
 * Dataset: [Billboard Hot-100 Songs 2000-2018](https://data.world/typhon/billboard-hot-100-songs-2000-2018-w-spotify-data-lyrics)
-<br/>
-
 * The dataset I chose is from data.world and the data is collected by user @typhon. It includs information of Billboard Hot-100 songs from 2000-2018 and corresponding Spotify data of each song.
-<br/>
-
 * It's a dataset under public domain with open license.
 
 
@@ -17,14 +13,8 @@
 
 ###### II. Prelimination:
 * The raw data has 7573 rows and 31 column. However, it also contains a great amount of unknown or missing values. Therefore, it still needs cleaning.
-</br>
-
 * <a href="Data_Prelimination.html">Data Prelimination</a>
-</br>
-
 * <a href="Trend_Prelimination.html">Trend Prelimination</a>
-</br>
-
 * <a href="ER_Diagram.pdf">Relational ER Diagram</a>
 
 
@@ -32,46 +22,45 @@
 
 ###### III. Ideas of exploring dataset
 * Exploring trend of popular songs by analysing genres
-<br/>
-
 * Analysing the correlations between specific genre and its Spotify values(like loudness, energy, acoustiveness etc.)
-<br/>
-
 * Predicting the relationship between lyrics and genres
-<br/>
-
 * Predicting the genres and Spotify values of future popular songs
 
 
 <br/>
 
-#### 0. Plan My Final Deliverables
+#### 1. Plan Final Deliverables
 Firstly, I checked the dataset structure. My dataset did not contains many reusable textual information, however, only artist name and broad_genre columns could be enriched with reconciliation in OpenRefine. Most columns contain numeric values or links, which cannot be reconciled or linked. Therefore, I planned to develop a shiny app for data visualization.
 
-### 1. Shiny App with RStudio
-  #### 1.1 Packages and Dataset
+### 2. Shiny App with RStudio
+  #### 2.1 Packages and Dataset
 </br>
 Packages installed for Shiny app
-  - shiny
-  - shinydashboard
-  - ggplot2
-  - tidyverse
-  - shinythemes
-  - plotly
-  - wordcloud2
-  - dashboardthemes
-  - flexdashboard
+
+* shiny
+* shinydashboard
+* shinydashboard
+* ggplot2
+* tidyverse
+* shinythemes
+* plotly
+* wordcloud2
+* dashboardthemes
+* flexdashboard
 
 </br>
 Dataset
-  - new.csv: I exported the original dataset in OpenRefine as a csv file.
-  - artist.csv: I wrote a new csv file based on the new.csv by extract the information of all artists and their corresponding wiki_uri for later hyperlink embedding.
 
-#### 1.2 Interface Design
+* new.csv: I exported the original dataset in OpenRefine as a csv file.
+* artist.csv: I wrote a new csv file based on the new.csv by extract the information of all artists and their corresponding wiki_uri for later hyperlink embedding.
+
+#### 2.2 Interface Design
 </br>
 I originally planned 3 pages for displaying, and each page would includes various graphs.
-- Overall Information Visualization Page
-  - Dataset overview
+
+* Overall Information Visualization Page
+
+  * Dataset overview
   - Popularity of different genres developed by time
   - Wordcloud of top 100 popular artists
 - Individual Artist Information Page
@@ -85,10 +74,13 @@ I originally planned 3 pages for displaying, and each page would includes variou
     - User could select values for different musical variable and model will predict the ranking (peak ranking) of this "song".
 
 
-#### 1.3 Approaches
+#### 2.3 Approaches
 </br>
-##### 1.3.1 Overall Information Visualization Page
+
+##### 2.3.1 Overall Information Visualization Page
+
 0. Review the summary of the original dataset by grouping rows by year
+
   - I convert original date column as date format and add a new column called year by extracting year from it.
   - I group the data by year and count there are how many records (rows) for each year. Surprisingly, I found the number of records varies a lot for each year (range from 249 for 2001 to 626 for 2017). This means I need to normalize data while I do visualization to avoid biased graph.
 1. Dataset overview
@@ -102,7 +94,8 @@ I originally planned 3 pages for displaying, and each page would includes variou
   - Steps: Unlist 8 arist columns and count frequency for each one. Then create Wordcoud based on it.
   - Findings: It's interesting that many artists they would collaborate with others, and most of the time, they are not main artist for this song. Some artists don't have trending songs as main singer in the rank, however, they contributed to many hot songs.
 
-##### 1.3.2 Individual Artist Information Page
+##### 2.3.2 Individual Artist Information Page
+
 0. Create a new csv file for this pages
  - A new csv file is necessary because I reconciled multiple artist columns. Each artist would have different wikidata link, so I cannot store their wikidata information in one row.
  - Steps: In OpenRefine, I extract the artists' wikidata number and create corresponding new columns (e.g artist1 & wikidata_uri1), which convert their wikidata number to hyperlinks by adding prefix and domain of the website. This dataset saved as artist.csv.
@@ -126,7 +119,8 @@ I originally planned 3 pages for displaying, and each page would includes variou
     - size: peak_popularity: 101 - peak_pos
     - color: broad_genre
 
-##### 1.3.3 Prediction Page
+##### 2.3.3 Prediction Page
+
 0. Create model for prediction
   - In the R Markdown File I created, I used linear regression for fitting the model to musical variables. After selecting statistically significant variables, I'm not satisfied with the result of model prediction after running testing on it. In the final model I made, only 3% of the rank value could be explained by my variables.
 1. Future Improvement
