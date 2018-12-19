@@ -1,7 +1,51 @@
 # inls620-billboard_analysis
 
+### Choosing a dataset
 
-### 0. Plan My Final Deliverables
+  #### Outline:
+###### I. Understanding the data
+* Dataset: [Billboard Hot-100 Songs 2000-2018](https://data.world/typhon/billboard-hot-100-songs-2000-2018-w-spotify-data-lyrics)
+<br/>
+
+* The dataset I chose is from data.world and the data is collected by user @typhon. It includs information of Billboard Hot-100 songs from 2000-2018 and corresponding Spotify data of each song.
+<br/>
+
+* It's a dataset under public domain with open license.
+
+
+<br/>
+
+###### II. Prelimination:
+* The raw data has 7573 rows and 31 column. However, it also contains a great amount of unknown or missing values. Therefore, it still needs cleaning.
+</br>
+
+* <a href="Data_Prelimination.html">Data Prelimination</a>
+</br>
+
+* <a href="Trend_Prelimination.html">Trend Prelimination</a>
+</br>
+
+* <a href="ER_Diagram.pdf">Relational ER Diagram</a>
+
+
+<br/>
+
+###### III. Ideas of exploring dataset
+* Exploring trend of popular songs by analysing genres
+<br/>
+
+* Analysing the correlations between specific genre and its Spotify values(like loudness, energy, acoustiveness etc.)
+<br/>
+
+* Predicting the relationship between lyrics and genres
+<br/>
+
+* Predicting the genres and Spotify values of future popular songs
+
+
+<br/>
+
+#### 0. Plan My Final Deliverables
 Firstly, I checked the dataset structure. My dataset did not contains many reusable textual information, however, only artist name and broad_genre columns could be enriched with reconciliation in OpenRefine. Most columns contain numeric values or links, which cannot be reconciled or linked. Therefore, I planned to develop a shiny app for data visualization.
 
 ### 1. Shiny App with RStudio
