@@ -3,15 +3,16 @@
 ### 0. Choosing a dataset
 
   #### Outline:
-###### I. Understanding the data
+#### I. Understanding the data
 * Dataset: [Billboard Hot-100 Songs 2000-2018](https://data.world/typhon/billboard-hot-100-songs-2000-2018-w-spotify-data-lyrics)
 * The dataset I chose is from data.world and the data is collected by user @typhon. It includs information of Billboard Hot-100 songs from 2000-2018 and corresponding Spotify data of each song.
 * It's a dataset under public domain with open license.
+* Data reconcilation is handled by OpenRefine.
 
 
 <br/>
 
-###### II. Prelimination:
+#### II. Prelimination:
 * The raw data has 7573 rows and 31 column. However, it also contains a great amount of unknown or missing values. Therefore, it still needs cleaning.
 * <a href="Data_Prelimination.html">Data Prelimination</a>
 * <a href="Trend_Prelimination.html">Trend Prelimination</a>
@@ -20,7 +21,7 @@
 
 <br/>
 
-###### III. Ideas of exploring dataset
+#### III. Ideas of exploring dataset
 * Exploring trend of popular songs by analysing genres
 * Analysing the correlations between specific genre and its Spotify values(like loudness, energy, acoustiveness etc.)
 * Predicting the relationship between lyrics and genres
@@ -29,7 +30,7 @@
 
 <br/>
 
-#### 1. Plan Final Deliverables
+### 1. Plan Final Deliverables
 Firstly, I checked the dataset structure. My dataset did not contains many reusable textual information, however, only artist name and broad_genre columns could be enriched with reconciliation in OpenRefine. Most columns contain numeric values or links, which cannot be reconciled or linked. Therefore, I planned to develop a shiny app for data visualization.
 
 ### 2. Shiny App with RStudio
@@ -77,7 +78,7 @@ I originally planned 3 pages for displaying, and each page would includes variou
 #### 2.3 Approaches
 </br>
 
-##### 2.3.1 Overall Information Visualization Page
+#### 2.3.1 Overall Information Visualization Page
 
 0. Review the summary of the original dataset by grouping rows by year
 
@@ -94,7 +95,7 @@ I originally planned 3 pages for displaying, and each page would includes variou
   - Steps: Unlist 8 arist columns and count frequency for each one. Then create Wordcoud based on it.
   - Findings: It's interesting that many artists they would collaborate with others, and most of the time, they are not main artist for this song. Some artists don't have trending songs as main singer in the rank, however, they contributed to many hot songs.
 
-##### 2.3.2 Individual Artist Information Page
+#### 2.3.2 Individual Artist Information Page
 
 0. Create a new csv file for this pages
  - A new csv file is necessary because I reconciled multiple artist columns. Each artist would have different wikidata link, so I cannot store their wikidata information in one row.
@@ -119,7 +120,7 @@ I originally planned 3 pages for displaying, and each page would includes variou
     - size: peak_popularity: 101 - peak_pos
     - color: broad_genre
 
-##### 2.3.3 Prediction Page
+#### 2.3.3 Prediction Page
 
 0. Create model for prediction
   - In the R Markdown File I created, I used linear regression for fitting the model to musical variables. After selecting statistically significant variables, I'm not satisfied with the result of model prediction after running testing on it. In the final model I made, only 3% of the rank value could be explained by my variables.
