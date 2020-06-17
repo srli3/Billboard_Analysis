@@ -1,4 +1,4 @@
-# inls620-billboard_analysis
+# Billboard_Analysis
 
 ### Final Deliverable Preview
 
